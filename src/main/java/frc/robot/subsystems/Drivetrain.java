@@ -18,10 +18,10 @@ import frc.robot.Constants;
 public class Drivetrain extends SubsystemBase {
   /** Creates a new Drivetrain. */
   public Drivetrain() {
-    RM.setNeutralMode(NeutralMode.Coast);
-    LM.setNeutralMode(NeutralMode.Coast);
-    RS.setNeutralMode(NeutralMode.Coast);
-    LS.setNeutralMode(NeutralMode.Coast);
+    RM.setNeutralMode(NeutralMode.Brake);
+    LM.setNeutralMode(NeutralMode.Brake);
+    RS.setNeutralMode(NeutralMode.Brake);
+    LS.setNeutralMode(NeutralMode.Brake);
     
 
 
@@ -38,12 +38,12 @@ public class Drivetrain extends SubsystemBase {
   public TalonFX RS = new TalonFX(Constants.rightS);
 
   public void runLeftSide(ControlMode cm, double unit){
-    LM.set(cm, unit * percent);
+    LM.set(cm, unit);
     LS.follow(LM);
   }
 
   public void runRightSide(ControlMode cm, double unit){
-    RM.set(cm, unit * percent);
+    RM.set(cm, unit);
     RS.follow(RM);
   } 
   
@@ -68,9 +68,15 @@ public class Drivetrain extends SubsystemBase {
   }
 
 
-  public void setDistance(double feet){
+  public void setDistanceFeet(double feet){
     runBothSide(ControlMode.Position, MotorAlg(feet));
     System.out.println("Position set to: " + MotorAlg(feet));
+    System.out.println("Position at: " + getRightPos());
+  }
+
+  public void setDistance(double distance){
+    runBothSide(ControlMode.Position, distance);
+    System.out.println("Position set to: " + distance);
     System.out.println("Position at: " + getRightPos());
   }
 
@@ -94,4 +100,5 @@ public class Drivetrain extends SubsystemBase {
   public void periodic() {
     // This method will be called once per scheduler run
   }
+
 }

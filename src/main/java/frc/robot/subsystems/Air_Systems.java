@@ -19,9 +19,9 @@ public class Air_Systems extends SubsystemBase {
    public PneumaticHub pHub = new PneumaticHub(Constants.PneumaticHub);
 
    //making new Solenoid
-   public Solenoid intakeSolenoid = pHub.makeSolenoid(1);
+   public Solenoid intakeSolenoid = pHub.makeSolenoid(0);
 
-   public Solenoid liftSolenoid = pHub.makeSolenoid(9);
+   public Solenoid liftSolenoid = pHub.makeSolenoid(1);
   @Override
   public void periodic() {
   }

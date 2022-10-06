@@ -28,9 +28,9 @@ public class BeamBreaks extends SubsystemBase {
         beamBreak = false;
         break;
     }
-    return beamBreak;
-  }
-*/
+    return beamBreak; 
+  } */
+
   @Override
   public void periodic() {}
 }

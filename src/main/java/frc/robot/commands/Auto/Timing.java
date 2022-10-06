@@ -5,17 +5,14 @@
 package frc.robot.commands.Auto;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.RobotContainer;
 
-public class driveBackwards extends CommandBase {
-  double distance;
-  Boolean FIN;
-  Double m_feet;
-  /** Creates a new driveBackwards. */
-  public driveBackwards(double feet) {
+public class Timing extends CommandBase {
+  /** Creates a new Timing. */
+  int m_time;
+  boolean FIN;
+  public Timing(int time) {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(RobotContainer.m_drivetrain);
-    feet = m_feet;
+    m_time = time;
   }
 
   // Called when the command is initially scheduled.
@@ -25,19 +22,23 @@ public class driveBackwards extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    RobotContainer.m_drivetrain.setDistance(m_feet);
+    System.out.println("Waiting for " + m_time);
+    try {
+      Thread.sleep(m_time);
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
     FIN = true;
+    end(true);
   }
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {
-
-  }
+  public void end(boolean interrupted) {}
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return FIN;
+    return false;
   }
 }

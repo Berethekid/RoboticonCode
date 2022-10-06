@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.ExampleCommand;
+import frc.robot.commands.Auto.setDrivePosition;
 import frc.robot.commands.*;
 import frc.robot.commands.DriverControl.ArcadeDrive;
 import frc.robot.commands.DriverControl.TankDrive;
@@ -105,7 +106,7 @@ public class RobotContainer {
     YB.whenPressed(new SendBallToShooter(-1));
     YB.whenReleased(new SendBallToShooter(0));
 
-    RB.whenPressed(new runShooter(0.6));
+    RB.whenPressed(new runShooter(0.8));
     RB.whenReleased(new runShooter(0.0));
 
     HB.whenPressed(new SolenoidTest(true));
@@ -114,6 +115,8 @@ public class RobotContainer {
 
     RJB.whenPressed(new ArcadeDrive());
     LJB.whenPressed(new TankDrive());
+
+    AB.whenPressed(new setDrivePosition(10000));
 
 
 

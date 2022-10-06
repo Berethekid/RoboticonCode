@@ -9,8 +9,10 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
 
+
 public class ArcadeDrive extends CommandBase {
   /** Creates a new ArcadeDrive. */
+  Double PO = 0.3;
   public ArcadeDrive() {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(RobotContainer.m_drivetrain);
@@ -28,8 +30,8 @@ public class ArcadeDrive extends CommandBase {
     Double LJY = RobotContainer.XboxC.getRawAxis(1);
     Double RJX = RobotContainer.XboxC.getRawAxis(4);
 
-    RobotContainer.m_drivetrain.runLeftSide(ControlMode.PercentOutput, LJY-RJX);
-    RobotContainer.m_drivetrain.runRightSide(ControlMode.PercentOutput, LJY+RJX);
+    RobotContainer.m_drivetrain.runLeftSide(ControlMode.PercentOutput, (LJY-RJX)* PO);
+    RobotContainer.m_drivetrain.runRightSide(ControlMode.PercentOutput, (LJY+RJX)* PO);
   }
   // Called once the command ends or is interrupted.
   @Override

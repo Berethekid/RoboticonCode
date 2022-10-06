@@ -11,6 +11,7 @@ import frc.robot.RobotContainer;
 
 public class TankDrive extends CommandBase {
   /** Creates a new TankDrive. */
+  Double PO = 0.3;
   public TankDrive() {
     // Use addRequirements() here to declare subsystem dependencies.
   }
@@ -25,8 +26,8 @@ public class TankDrive extends CommandBase {
     Double LJY = RobotContainer.getDeadZone(1);
     Double RJY = RobotContainer.getDeadZone(5);
 
-    RobotContainer.m_drivetrain.runLeftSide(ControlMode.PercentOutput, LJY);
-    RobotContainer.m_drivetrain.runRightSide(ControlMode.PercentOutput, -RJY);
+    RobotContainer.m_drivetrain.runLeftSide(ControlMode.PercentOutput, LJY * PO);
+    RobotContainer.m_drivetrain.runRightSide(ControlMode.PercentOutput, -RJY * PO);
   }
 
   // Called once the command ends or is interrupted.
